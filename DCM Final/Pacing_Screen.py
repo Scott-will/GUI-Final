@@ -32,6 +32,7 @@
 from tkinter import *
 import tkinter as tk
 import Login_Screen
+import Notifiy_Window
 
 import Paramter_Window
 
@@ -117,8 +118,7 @@ class Pacing_Window:
         self.VOOR_button.place(x=680, y=250)
 
     def from_Pacing_Window(self):  # Transition function from new user window to the login screen
-        self.frame_root.pack_forget()
-        self.LoginScreen = Login_Screen.Login_Window(self.master, self.df)
+        Notifiy_Window.Notify_window(9, self.frame_root, self.master, self.df, 0, self.user)
 
     def To_Parameters(self,mode):
         self.frame_root.pack_forget()
