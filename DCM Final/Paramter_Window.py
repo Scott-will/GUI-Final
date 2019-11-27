@@ -46,22 +46,17 @@ class Parameter_Window:
         self.master = master
         self.df = df
         self.data = [0]*22
-        self.board = openSerial()
+        #self.board = openSerial()
         self.boardID = 22
         self.data[0] = self.boardID
 
-
-
-
-        # The following 4 modes will display the correct set of titles depending on which pacing mode the user wants to
-        # edit
         if self.mode == 1:
-            self.background_image = tk.PhotoImage(file="backgroundpacingAOOVOO.png")
+            self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
             # command's parameters are the x and y coordinates for the various widgets it creates
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 300, 50, 300, 350, 300, 300, 300, 90)
+            self.common(125, 172, 125, 222, 30, 220, 30, 170, 300, 50, 300, 350, 300, 300, 300, 90, 340, 222, 270, 222)
 
             self.label_title1 = Label(self.frame_root, text="AOO Pacing Mode")
             self.label_title1.config(font=("Courier", 11))
@@ -75,9 +70,9 @@ class Parameter_Window:
             self.label_ARP = Label(self.frame_root, text="ARP:")
             self.label_ARP.place(x=93, y=420)
             self.label_PVARP = Label(self.frame_root, text="PVARP:")
-            self.label_PVARP.place(x=80, y=470)
+            self.label_PVARP.place(x=290, y=172)
 
-            self.entry_AV_Amp = Entry(self.frame_root) #self.entry_AV_Amp, self.entry_Pulse_Width,
+            self.entry_AV_Amp = Entry(self.frame_root)  # self.entry_AV_Amp, self.entry_Pulse_Width,
             self.entry_AV_Amp.place(x=125, y=270)
             self.entry_Pulse_Width = Entry(self.frame_root)
             self.entry_Pulse_Width.place(x=125, y=320)
@@ -86,17 +81,17 @@ class Parameter_Window:
             self.entry_ARP = Entry(self.frame_root)
             self.entry_ARP.place(x=125, y=420)
             self.entry_PVARP = Entry(self.frame_root)
-            self.entry_PVARP.place(x=125, y=470)
+            self.entry_PVARP.place(x=340, y=172)
 
 
 
-        elif self.mode == 0:
+        elif self.mode == 2:
             self.background_image = tk.PhotoImage(file="backgroundpacingAOOVOO.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 190, 60, 240, 300, 50, 300, 310, 300, 260, 300, 90)
+            self.common(155, 192, 155, 242, 60, 240, 60, 190, 300, 50, 300, 310, 300, 260, 300, 90, 155, 392, 80, 392)
 
             self.label_title2 = Label(self.frame_root, text="VOO Pacing Mode")
             self.label_title2.config(font=("Courier", 15))
@@ -119,7 +114,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 190, 60, 240, 430, 60, 400, 420, 400, 370, 430, 100)
+            self.common(155, 192, 155, 242, 60, 240, 60, 190, 430, 60, 400, 420, 400, 370, 430, 100, 410, 342, 338, 342)
 
             self.label_title3 = Label(self.frame_root, text="AAI Pacing Mode")
             self.label_title3.config(font=("Courier", 15))
@@ -157,15 +152,15 @@ class Parameter_Window:
 
 
 
-        elif self.mode == 2:
+        elif self.mode == 4:
             self.background_image = tk.PhotoImage(file="backgroundpacingVIIAAI.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(180, 182, 180, 232, 85, 182, 85, 232, 430, 60, 400, 350, 400, 300, 430, 100)
+            self.common(180, 182, 180, 232, 85, 182, 85, 232, 430, 60, 400, 350, 400, 300, 430, 100, 410, 272, 338, 272)
 
-            self.label_title4 = Label(self.frame_root, text="VVI Pacing Mode")
+            self.label_title4 = Label(self.frame_root, text="VII Pacing Mode")
             self.label_title4.config(font=("Courier", 12))
             self.label_title4.place(x=210, y=150)
             self.label_Amp = Label(self.frame_root, text="Ventricle Amplitude:")
@@ -195,8 +190,8 @@ class Parameter_Window:
             self.entry_Rate_Smooth.place(x=410, y=232)
 
 
-        elif self.mode == 4:
-            self.background_image = tk.PhotoImage(file="backgroundpacingAOOVOO.png")
+        elif self.mode == 5:
+            self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
@@ -205,9 +200,9 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 13))
             self.label_title2.place(x=120, y=145)
 
-            self.common(140, 172, 140, 222, 50, 170, 50, 220, 300, 50, 300, 350, 300, 300, 300, 90)
+            self.common(140, 172, 140, 222, 50, 220, 50, 170, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222)
 
-            self.label.AV_del = Label(self.frame_root,text="Fixed Av Delay:")
+            self.label.AV_del = Label(self.frame_root, text="Fixed Av Delay:")
             self.label.AV_del.place(x=57, y=272)
             self.label_Amp = Label(self.frame_root, text="Atrial Amplitude:")
             self.label_Amp.place(x=45, y=322)
@@ -215,8 +210,8 @@ class Parameter_Window:
             self.label_Amp.place(x=27, y=372)
             self.label_Pulse_Width = Label(self.frame_root, text="Atrial Pulse Width:")
             self.label_Pulse_Width.place(x=40, y=422)
-            self.label_Pulse_Width = Label(self.frame_root, text="Ventrical Pulse Width:")
-            self.label_Pulse_Width.place(x=21, y=472)
+            self.label_Pulse_Width = Label(self.frame_root, text="Vent Pulse Width:")
+            self.label_Pulse_Width.place(x=260, y=172)
 
             self.entry_AV_del = Entry(self.frame_root)
             self.entry_AV_del.place(x=140, y=272)
@@ -227,9 +222,9 @@ class Parameter_Window:
             self.entry_Pulse_Width = Entry(self.frame_root)
             self.entry_Pulse_Width.place(x=140, y=422)
             self.entry_Pulse_Width = Entry(self.frame_root)
-            self.entry_Pulse_Width.place(x=140, y=472)
+            self.entry_Pulse_Width.place(x=360, y=172)
 
-        elif self.mode == 9:
+        elif self.mode == 6:
             self.background_image = tk.PhotoImage(file="backgroundpacingVIIAAI.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -239,7 +234,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=180, y=145)
 
-            self.common(145, 172, 145, 222, 50, 172, 50, 222, 430, 60, 230, 450, 300, 450, 430, 100)
+            self.common(145, 172, 145, 222, 50, 172, 50, 222, 430, 60, 160, 450, 230, 450, 430, 100, 400, 462, 315, 462)
 
             self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
             self.label_Sensor_Rate.place(x=50, y=270)
@@ -289,7 +284,7 @@ class Parameter_Window:
 
 
 
-        elif self.mode == 10:
+        elif self.mode == 7:
             self.background_image = tk.PhotoImage(file="backgroundpacing2.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -365,6 +360,8 @@ class Parameter_Window:
             self.entry_Act_Thres.place(x=920, y=322)
             self.entry_React_Time = Entry(self.frame_root)
             self.entry_React_Time.place(x=920, y=372)
+            self.entry_BPM = Entry(self.frame_root)
+            self.entry_BPM.place(x=920, y=422)
 
             self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
             self.label_Recv_Time.place(x=30, y=170)
@@ -418,6 +415,8 @@ class Parameter_Window:
             self.label_Act_Thres.place(x=810, y=320)
             self.label_React_Time = Label(self.frame_root, text="Reaction Time:")
             self.label_React_Time.place(x=830, y=370)
+            self.label_BPM = Label(self.frame_root, text="Target BPM:")
+            self.label_BPM.place(x=840, y=420)
 
         elif self.mode == 8:
             self.background_image = tk.PhotoImage(file="backgroundpacing3.png")
@@ -429,7 +428,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=320, y=120)
 
-            self.common(145, 172, 145, 222, 50, 172, 50, 222, 750, 30, 330, 460, 400, 460, 750, 70)
+            self.common(145, 172, 145, 222, 50, 172, 50, 222, 750, 30, 330, 460, 400, 460, 750, 70, 710, 272, 640, 272)
 
             self.entry_AV_Sensor_Rate = Entry(self.frame_root)
             self.entry_AV_Sensor_Rate.place(x=145, y=272)
@@ -478,7 +477,7 @@ class Parameter_Window:
             self.entry_Recv_Time = Entry(self.frame_root)
             self.entry_Recv_Time.place(x=710, y=172)
             self.entry_Resp_Fact = Entry(self.frame_root)
-            self.entry_Resp_Fact.place(x=710,y=222)
+            self.entry_Resp_Fact.place(x=710, y=222)
 
             self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
             self.label_Recv_Time.place(x=621, y=172)
@@ -495,7 +494,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 370, 350, 320, 400, 90)
+            self.common(125, 172, 125, 222, 30, 220, 30, 170, 400, 50, 350, 420, 350, 370, 400, 90, 360, 322, 288, 322)
 
             self.entry_AV_Sensor_Rate = Entry(self.frame_root)
             self.entry_AV_Sensor_Rate.place(x=125, y=272)
@@ -522,7 +521,6 @@ class Parameter_Window:
             self.entry_React_Time = Entry(self.frame_root)
             self.entry_React_Time.place(x=360, y=272)
 
-
             self.label_React_Time = Label(self.frame_root, text="Reaction Time:")
             self.label_React_Time.place(x=270, y=272)
             self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
@@ -530,43 +528,130 @@ class Parameter_Window:
             self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
             self.label_Resp_Fact.place(x=265, y=222)
 
-        elif self.mode == 8:
+
+        elif self.mode == 10:
+
             self.background_image = tk.PhotoImage(file="backgroundpacing3.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
-
             self.label_title2 = Label(self.frame_root, text="VVIR Pacing Mode")
+            self.label_title2.config(font=("Courier", 15))
+            self.label_title2.place(x=300, y=120)
+
+            self.common(150, 172, 150, 222, 55, 220, 55, 170, 700, 30, 700, 370, 700, 320, 700, 70, 700, 222, 628, 222)
+
+            self.entry_Sensor_Rate = Entry(self.frame_root)
+            self.entry_Sensor_Rate.place(x=150, y=272)
+            self.entry_Vent_Amp = Entry(self.frame_root)
+            self.entry_Vent_Amp.place(x=150, y=322)
+            self.entry_Vent_Pulse = Entry(self.frame_root)
+            self.entry_Vent_Pulse.place(x=150, y=372)
+            self.entry_Vent_Sens = Entry(self.frame_root)
+            self.entry_Vent_Sens.place(x=150, y=422)
+
+            self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
+            self.label_Sensor_Rate.place(x=55, y=272)
+            self.label_Vent_Amp = Label(self.frame_root, text="Ventricle Amplitude:")
+            self.label_Vent_Amp.place(x=35, y=323)
+            self.label_Vent_Pulse = Label(self.frame_root, text="Ventricle Pulse Width:")
+            self.label_Vent_Pulse.place(x=27, y=372)
+            self.label_Vent_Sens = Label(self.frame_root, text="Ventricle Sensitivity:")
+            self.label_Vent_Sens.place(x=38, y=422)
+
+            self.entry_VRP = Entry(self.frame_root)
+            self.entry_VRP.place(x=390, y=172)
+            self.entry_Hyst = Entry(self.frame_root)
+            self.entry_Hyst.place(x=390, y=220)
+            self.entry_Rate_Smooth = Entry(self.frame_root)
+            self.entry_Rate_Smooth.place(x=390, y=272)
+            self.entry_Act_Thres = Entry(self.frame_root)
+            self.entry_Act_Thres.place(x=390, y=322)
+            self.entry_React_Time = Entry(self.frame_root)
+            self.entry_React_Time.place(x=390, y=372)
+            self.entry_Resp_Fact = Entry(self.frame_root)
+            self.entry_Resp_Fact.place(x=390, y=422)
+            self.entry_Recv_Time = Entry(self.frame_root)
+            self.entry_Recv_Time.place(x=700, y=172)
+
+            self.label_VRP = Label(self.frame_root, text="VRP:")
+            self.label_VRP.place(x=360, y=172)
+            self.label_Hyst = Label(self.frame_root, text="Hysteresis:")
+            self.label_Hyst.place(x=327, y=222)
+            self.label_Rate_Smooth = Label(self.frame_root, text="Rate Smoothing:")
+            self.label_Rate_Smooth.place(x=295, y=272)
+            self.label_Act_Thres = Label(self.frame_root, text="Acticity Threshold:")
+            self.label_Act_Thres.place(x=285, y=322)
+            self.label_React_Time = Label(self.frame_root, text="Reaction Time:")
+            self.label_React_Time.place(x=305, y=372)
+            self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
+            self.label_Resp_Fact.place(x=295, y=422)
+            self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
+            self.label_Recv_Time.place(x=610, y=172)
+
+
+        elif self.mode == 11:
+
+            self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
+            self.label = Label(self.frame_root, image=self.background_image)
+            self.label.image = self.background_image
+            self.label.pack()
+            self.label_title2 = Label(self.frame_root, text="VOOR Pacing Mode")
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 370, 350, 320, 400, 90)
-
-            self.entry_AV_Sensor_Rate = Entry(self.frame_root)
-            self.entry_AV_Sensor_Rate.place(x=125, y=272)
+            self.common(125, 172, 125, 222, 30, 220, 30, 170, 400, 50, 350, 420, 350, 370, 400, 90, 350, 322, 278, 322)
 
             self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
-            self.label_Sensor_Rate.place(x=25, y=272)
+            self.label_Sensor_Rate.place(x=30, y=272)
+            self.label_Vent_Amp = Label(self.frame_root, text="Vent Amplitude:")
+            self.label_Vent_Amp.place(x=30, y=323)
+            self.label_Vent_Pulse = Label(self.frame_root, text="VentrPulse Width:")
+            self.label_Vent_Pulse.place(x=27, y=372)
+            self.label_Act_Thres = Label(self.frame_root, text="Acticity Threshold:")
+            self.label_Act_Thres.place(x=20, y=422)
+            self.entry_Sensor_Rate = Entry(self.frame_root)
+            self.entry_Sensor_Rate.place(x=125, y=272)
+            self.entry_Vent_Amp = Entry(self.frame_root)
+            self.entry_Vent_Amp.place(x=125, y=322)
+            self.entry_Vent_Pulse = Entry(self.frame_root)
+            self.entry_Vent_Pulse.place(x=125, y=372)
+            self.entry_Act_Thres = Entry(self.frame_root)
+            self.entry_Act_Thres.place(x=125, y=422)
 
+            self.label_React_Time = Label(self.frame_root, text="Reaction Time:")
+            self.label_React_Time.place(x=260, y=172)
+            self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
+            self.label_Resp_Fact.place(x=257, y=222)
+            self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
+            self.label_Recv_Time.place(x=260, y=272)
+
+            self.entry_React_Time = Entry(self.frame_root)
+            self.entry_React_Time.place(x=350, y=172)
+            self.entry_Resp_Fact = Entry(self.frame_root)
+            self.entry_Resp_Fact.place(x=350, y=222)
+            self.entry_Recv_Time = Entry(self.frame_root)
+            self.entry_Recv_Time.place(x=350, y=272)
 
     # All widgets are created in common() are common between all 4 pacing mode. Because the layout for the window of
     # each mode is different we will just pass the x and y coord as parameters when the method is called
     def common(self, upperlimx, upperlimy, lowerlimx, lowerlimy, upperlimx2, upperlimy2, lowerlimx2, lowerlimy2, backx,
-               backy, okx, oky, applyx, applyy, signoutx, signouty):#, bpmx, bpmy, bpmx2, bpmy2):
-
+               backy, okx, oky, applyx, applyy, signoutx, signouty, BPMX, BPMY, BPMX2, BPMY2):
         self.entry_Upperlim = Entry(self.frame_root)
         self.entry_Upperlim.place(x=upperlimx, y=upperlimy)
         self.entry_Lowerlim = Entry(self.frame_root)
         self.entry_Lowerlim.place(x=lowerlimx, y=lowerlimy)
-        #self.entry_BPM = Enrty(self.frame_root)
-        #self.entry_BPM.place(x = bpmx, y = bpmy)
 
         self.label_lowlim = Label(self.frame_root, text="Lower Rate limit:")
         self.label_lowlim.place(x=lowerlimx2, y=lowerlimy2)
         self.label_uplim = Label(self.frame_root, text="Upper Rate limit:")
         self.label_uplim.place(x=upperlimx2, y=upperlimy2)
-        #self.label_BPM = Label(self.frame_root, text = "BPM")
-        #self.label_BPM.place(x = bpmx2, bpmy2)
+
+        self.entry_BPM = Entry(self.frame_root)
+        self.entry_BPM.place(x=BPMX, y=BPMY)
+
+        self.label_BPM = Label(self.frame_root, text="Target BPM:")
+        self.label_BPM.place(x=BPMX2, y=BPMY2)
 
         self.Back_image = tk.PhotoImage(file="Back.png")
         self.button_back = Button(self.frame_root, image=self.Back_image)
@@ -586,12 +671,10 @@ class Parameter_Window:
         self.button_signout.place(x=signoutx, y=signouty)
 
     def from_Parameter_Window(self):  # Returns to the pacing screen
-        self.frame_root.pack_forget()
-        self.PacingWindow = Pacing_Screen.Pacing_Window(self.master, self.user, self.df)
+        Notifiy_Window.Notify_window(10, self.frame_root, self.master, self.df, 1, self.user)
 
     def To_login(self):
-        self.frame_root.pack_forget()
-        self.login = Login_Screen.Login_Window(self.master, self.df)
+        Notifiy_Window.Notify_window(9, self.frame_root, self.master, self.df, 0, self.user)
 
 
     def Apply(self):  # Apply will save the #parameters in the entry fields and return to the pacing screen
@@ -618,6 +701,7 @@ class Parameter_Window:
         elif self.mode == 11:
             self.save_VOOR()
 
+        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
         self.frame_root.pack_forget()
         self.PacingWindow = Pacing_Screen.Pacing_Window(self.master, self.user, self.df)
         # Add code here to also save the parameters
@@ -645,7 +729,7 @@ class Parameter_Window:
             self.save_AAIR()
         elif self.mode == 11:
             self.save_VOOR()
-        # Just random code so pycharm doesnt freak out that there is nothing in the function
+        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
         # add code here to save the parameters
 
     def save_VOO(self):
@@ -1393,7 +1477,7 @@ class Parameter_Window:
     def showVOO(self):
         #show old parameters
         for i in range(0, 20, 2):
-            if self,df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'VOO Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'VOO Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VOO Pulse Width'])
@@ -1403,7 +1487,7 @@ class Parameter_Window:
     def showAOO(self):
         #show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'AOO Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'AOO Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'AOO Pulse Width'])
@@ -1413,7 +1497,7 @@ class Parameter_Window:
     def showVVI(self):
         # show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'VVI Lower Rate Limit'])
                 self.entry_UpperLimself.df.insert([self.df['Users'].iloc[i], 'VVI Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VVI Pulse Width'])
@@ -1426,7 +1510,7 @@ class Parameter_Window:
     def showAAI(self):
         # show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'AAI Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'AAI Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'AAI Pulse Width'])
@@ -1439,7 +1523,7 @@ class Parameter_Window:
     def showDOO(self):
         # show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'DOO Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'DOO Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'DOO Ventrical Pulse Width'])
@@ -1450,7 +1534,7 @@ class Parameter_Window:
     def showAOOR(self):
         # show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'AOOR Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'AOOR Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'AOOR Pulse Width'])
@@ -1465,7 +1549,7 @@ class Parameter_Window:
     def showAAIR(self):
         #old
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.df[self.df['Users'].iloc[i], 'AAIR Lower Rate Limit'] = int(self.entry_Lowerlim.get())
                 self.df[self.df['Users'].iloc[i], 'AAIR Upper Rate Limit'] = int(self.entry_UpperLim.get())
                 self.df[self.df['Users'].iloc[i], 'AAIR Pulse Width'] = int(self.entry_Pulse_Width.get())
@@ -1483,7 +1567,7 @@ class Parameter_Window:
     def showVOOR(self):
         # show old parameters
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'VOOR Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'VOOR Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VOOR Pulse Width'])
@@ -1498,7 +1582,7 @@ class Parameter_Window:
     def showVVIR(self):
         #show old
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'VVIR Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'VVIR Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VVIR Pulse Width'])
@@ -1516,7 +1600,7 @@ class Parameter_Window:
     def showDOOR(self):
         #show old
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'DOOR Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'DOOR Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'DOOR Ventrical Pulse Width'])
@@ -1531,7 +1615,7 @@ class Parameter_Window:
 
     def showDDDR(self):
         for i in range(0, 20, 2):
-            if self, df['Users'].iloc[i] == self.user:
+            if self.df['Users'].iloc[i] == self.user:
                 self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'DDDR Lower Rate Limit'])
                 self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'DDDR Upper Rate Limit'])
                 self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'DDDR Ventrical Pulse Width'])

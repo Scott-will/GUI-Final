@@ -32,7 +32,7 @@
 from tkinter import *
 import tkinter as tk
 import Login_Screen
-import Menu_Window
+
 import Paramter_Window
 
 
@@ -59,10 +59,6 @@ class Pacing_Window:
         self.button_signout.config(command=self.from_Pacing_Window)
         self.button_signout.place(x=770, y=90)
 
-        self.Back_image = tk.PhotoImage(file="Back.png")
-        self.button_back = Button(self.frame_root, image=self.Back_image)
-        self.button_back.config(command=self.To_Menu)
-        self.button_back.place(x=770, y=50)
 
         # The lambda keyword allows use to pass parameters to function calls that are tied to buttons
         self.AOO_image = tk.PhotoImage(file="AOO.png")
@@ -128,6 +124,4 @@ class Pacing_Window:
         self.frame_root.pack_forget()
         self.ParameterWindow = Paramter_Window.Parameter_Window(self.master, mode, self.user, self.df)
 
-    def To_Menu(self):
-        self.frame_root.pack_forget()
-        self.menu = Menu_Window.menu(self.master,self.user, self.df)
+
