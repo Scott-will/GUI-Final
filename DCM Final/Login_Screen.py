@@ -73,7 +73,7 @@ class Login_Window:  # Class for the create of the main login window
 
         # Block for the creation of the buttons for the login frame
         self.button_login = Button(self.frame_root, text="Login",
-                                   command=self.only_for_testing)  # command = self.check_user(self.entry_user.get(), self.entry_pass.get()))
+                                   command=self.to_pacing)  # command = self.check_user(self.entry_user.get(), self.entry_pass.get()))
         self.button_login.place(x=170, y=425)
         # self.button_login.config(command=self.check_user(self.entry_user.get(), self.entry_pass.get()))
         self.button_create = Button(self.frame_root, text="New User", command=self.new_user_window)
@@ -92,7 +92,9 @@ class Login_Window:  # Class for the create of the main login window
                     success = 1
                     break
         if success == 0:
-            Error = Notifiy_Window.Notify_window(2, self.frame_root,self.master,self.df,6,self.user)  ##user does not exist
+            self.user = [0] # we dont have access to users in this module so we are making a fake variable users that
+            # does nothing. We need it so we can call notify window
+            Notifiy_Window.Notify_window(6, self.frame_root,self.master,self.df,2,self.user)  ##user does not exist
 
 
     def new_user_window(self):  # calls new user screen

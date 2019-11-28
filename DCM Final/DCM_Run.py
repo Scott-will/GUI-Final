@@ -64,7 +64,7 @@ def check_serial():
         serial_init = 0
         serialclosed_image = tk.PhotoImage(file="serialclosed.png")
         label_serialclosed = Label(root, image=serialclosed_image)
-        label_serialclosed.pack(side=BOTTOM)
+        label_serialclosed.pack()
         time.sleep(refresh)
         label_serialclosed.pack_forget()
         status.state = False
@@ -74,7 +74,7 @@ def check_serial():
             if status.state:
                 serialopen_image = tk.PhotoImage(file="serialopen.png")
                 label_serialopen = Label(root, image=serialopen_image)
-                label_serialopen.pack(side=TOP)
+                label_serialopen.pack()
                 time.sleep(refresh)
                 label_serialopen.pack_forget()
 
@@ -82,7 +82,7 @@ def check_serial():
             elif (not status.state):
                 serialclosed_image = tk.PhotoImage(file="serialclosed.png")
                 label_serialclosed = Label(root, image=serialclosed_image)
-                label_serialclosed.pack(side=TOP)
+                label_serialclosed.pack()
                 time.sleep(refresh)
                 label_serialclosed.pack_forget()
 
@@ -92,7 +92,7 @@ def check_serial():
                 status.state = False
                 serialclosed_image = tk.PhotoImage(file="serialclosed.png")
                 label_serialclosed = Label(root, image=serialclosed_image)
-                label_serialclosed.pack(side=TOP)
+                label_serialclosed.pack()
                 time.sleep(refresh)
                 label_serialclosed.pack_forget()
 
@@ -101,7 +101,7 @@ def check_serial():
         elif (serial_init == 0):
             serialclosed_image = tk.PhotoImage(file="serialclosed.png")
             label_serialclosed = Label(root, image=serialclosed_image)
-            label_serialclosed.pack(side=BOTTOM)
+            label_serialclosed.pack()
             time.sleep(refresh)
             label_serialclosed.pack_forget()
             try:
@@ -135,7 +135,7 @@ root = Tk()  # Created the window where the entire program is run
 df = ex.CreateDataFrame()
 # This make it so the users cannot adjust the side of the window, we do this because expanding
 # the window will ruin the background and layout fo the widgets
-root.resizable(0, 0)
+root.resizable(False, True)
 root.configure(background="#A21F03")
 # Here we take the window we just created and we place the first frame onto it which is the login frame
 LoginScreen =Login_Screen.Login_Window(root, df)

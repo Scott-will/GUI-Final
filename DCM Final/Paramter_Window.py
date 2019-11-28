@@ -47,7 +47,7 @@ class Parameter_Window:
         self.master = master
         self.df = df
         self.data = [0]*22
-        self.board = openSerial()
+        #self.board = openSerial()
         self.boardID = 22
         self.data[0] = self.boardID
 
@@ -702,7 +702,6 @@ class Parameter_Window:
         elif self.mode == 11:
             self.save_VOOR()
 
-        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
         self.frame_root.pack_forget()
         self.PacingWindow = Pacing_Screen.Pacing_Window(self.master, self.user, self.df)
         # Add code here to also save the parameters
@@ -730,7 +729,6 @@ class Parameter_Window:
             self.save_AAIR()
         elif self.mode == 11:
             self.save_VOOR()
-        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
         # add code here to save the parameters
 
     def save_VOO(self):
@@ -767,12 +765,13 @@ class Parameter_Window:
                     if success == True:
                         self.writeParameters()
                         ex.saveDataFrame(self.df)
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
     def save_AOO(self):
         try:
@@ -817,14 +816,15 @@ class Parameter_Window:
             if success == True:
                 self.writeParameters()
                 ex.saveDataFrame(self.df)
+                Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                 print(self.data)
             else:
-                Notifiy_Window.Notify_window(8)
+                Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
                 print(self.data)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##LowerRateLimit, upper rate limit, pulse width, atrial amplitude
         ##save parameter
 
@@ -876,15 +876,16 @@ class Parameter_Window:
                     if success == True:
                         try:
                             self.writeParameters()
+                            Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         except FileNotFoundError:
                             Notifiy_Window.Notify_window()
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
     def save_AAI(self):
         try:
@@ -933,12 +934,13 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8, self.frame_root, self.master, self.df, 2, self.user)
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
     def save_DOO(self):
         try:
@@ -982,12 +984,13 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8, self.frame_root, self.master, self.df, 2, self.user)
         # save parameters
     def save_AOOR(self):
         try:
@@ -1046,13 +1049,14 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8, self.frame_root, self.master, self.df, 2, self.user)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##save parameters
 
     def save_AAIR(self):
@@ -1127,12 +1131,13 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##save parameters
     def save_VOOR(self):
         try:
@@ -1191,13 +1196,14 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##save parameters
     def save_VVIR(self):
         try:
@@ -1271,12 +1277,13 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8)
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_Window.Notify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##save parameters
     def save_DOOR(self):
         try:
@@ -1344,13 +1351,14 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
             ##lower rate limit, upper rate limit, pulsewidth, ventrical amplitude
         except ValueError:
-            Notifiy_WindowNotify_window(8)
+            Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         ##save parameters
     def save_DDDR(self):
         try:
@@ -1460,9 +1468,10 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
+                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
-                        Notifiy_Window.Notify_window(8)
+                        Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
         except ValueError:
             Notifiy_Window.Notify_window(8)
     ##save parameters
