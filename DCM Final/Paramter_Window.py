@@ -19,7 +19,7 @@
 # import EGram_Window           #
 # import Notify_Window          #
 # import serial                 #
-# import Serial_com             #
+# import Serial_com            #
 # import time                   #
 #import panda as pd             #
 #import Excel_Handling as ex    #
@@ -34,6 +34,7 @@ import Excel_Handling as ex
 import pandas as pd
 import struct
 from serial import Serial
+import Serial_com as sc
 
 
 
@@ -46,7 +47,7 @@ class Parameter_Window:
         self.master = master
         self.df = df
         self.data = [0]*22
-        #self.board = openSerial()
+        self.board = openSerial()
         self.boardID = 22
         self.data[0] = self.boardID
 
@@ -873,7 +874,10 @@ class Parameter_Window:
                    # else:
                     #    success = False
                     if success == True:
-                        self.writeParameters()
+                        try:
+                            self.writeParameters()
+                        except FileNotFoundError:
+                            Notifiy_Window.Notify_window()
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8)
@@ -1467,12 +1471,12 @@ class Parameter_Window:
         tosend = struct.pack('<BBBBBBHHBBBBHBBBHBdBBB', self.data[0], self.data[1], self.data[2], self.data[3], self.data[4],self.data[5],self.data[6],self.data[7],self.data[8],
                              self.data[9],self.data[10], self.data[11], self.data[12], self.data[13], self.data[14], self.data[15], self.data[16], self.data[17], self.data[18], self.data[19],
                              self.data[20], self.data[21])
-        transList = [0]*len(tosend)
+        self.transList = [0]*len(tosend)
         i = 0
         while i < len(tosend):
-            transList[i] = tosend[i]
+            self.transList[i] = tosend[i]
             i += 1
-        self.board.write(transList)
+        self.board.write(self.transList)
 
     def showVOO(self):
         #show old parameters

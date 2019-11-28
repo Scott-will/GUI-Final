@@ -27,7 +27,7 @@ import tkinter as tk
 from tkinter import *
 import serial
 import Login_Screen
-import Menu_Window
+#import Menu_Window
 import time
 import Excel_Handling as ex
 import pandas as pd
@@ -61,6 +61,7 @@ class Scom:
         self.s.open()
         self.state = self.s.isOpen()
         return self.state
+
 
 
 
