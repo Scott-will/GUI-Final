@@ -26,14 +26,10 @@
 import tkinter as tk
 from tkinter import *
 import serial
-import Login_Screen
-#import Menu_Window
 from serial import Serial
-import threading
 import time
 import serial.tools.list_ports
-import Excel_Handling as ex
-import pandas as pd
+
 
 
 

@@ -31,10 +31,7 @@
 
 from tkinter import *
 import tkinter as tk
-import Login_Screen
 import Notifiy_Window
-from serial import Serial
-
 import Paramter_Window
 
 

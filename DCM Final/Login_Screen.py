@@ -26,11 +26,8 @@
 #################################
 from tkinter import *
 import tkinter as tk
-import pickle
 import New_User_Screen
 import Notifiy_Window
-import pandas as pd
-import Excel_Handling as ex
 import Pacing_Screen
 
 

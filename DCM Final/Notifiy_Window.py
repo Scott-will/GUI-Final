@@ -23,9 +23,11 @@
 #################################
 
 import winsound
-from tkinter import *
 import Login_Screen
+from tkinter import *
+import tkinter as tk
 import Pacing_Screen
+
 
 
 class Notify_window():  # Class to warn users of errors various errors or to notify them of a conformation
@@ -34,9 +36,10 @@ class Notify_window():  # Class to warn users of errors various errors or to not
     ## need a window to: show file writing was success && paramaters saved, user added,
     def __init__(self, error, frame, master, df, choice, user):
         winsound.PlaySound("sound.wav", winsound.SND_ASYNC)  # Basic windows error sound to notify users
-        self.box = Tk()  # Creating a separate tk window for the errors
+        self.box = tk.Toplevel()  # Creating a separate tk window for the errors
         self.box.geometry('300x100')
         self.box.resizable(0, 0)
+
         self.frame = frame
         self.master = master
         self.df =df
@@ -104,9 +107,11 @@ class Notify_window():  # Class to warn users of errors various errors or to not
             elif error == 8:
                 error7_label = Label(self.box, text="Invalid Parameter")
                 error7_label.place(x=80, y=20)
+
             elif error == 9:
                 error9_label = Label(self.box, text = "No board connected")
                 error9_label.place(x = 80, y = 20)
+
 
 
 

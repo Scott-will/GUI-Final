@@ -31,6 +31,8 @@ import Notifiy_Window
 import pandas as pd
 import Excel_Handling as ex
 
+# passowrd/username: 6 characters min 1 number min
+
 class New_User_Window:
     def __init__(self, master, df):
         #frame definition
@@ -68,6 +70,13 @@ class New_User_Window:
         self.button_cancel = Button(self.frame_root, text="Cancel")
         self.button_cancel.config(command=self.from_new_user)
         self.button_cancel.place(x=250, y=390)
+
+        # do not mess with the spacing for this label, its like this to be properly formatted when in the GUI
+        self.label_username = Label(self.frame_root, text="Username/Password Requirements: 1) Must be at least 6 "
+                                                          "characters\n                                               "
+                                                          "                     2) Must contain at "
+                                                          "least 1 number")
+        self.label_username.place(x=330, y=295)
 
     def from_new_user(self):  # Transition function from new user window to the login screen
         self.frame_root.pack_forget()

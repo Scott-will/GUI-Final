@@ -26,8 +26,6 @@
 #################################
 from tkinter import *
 import tkinter as tk
-import pickle
-import Login_Screen
 import Pacing_Screen
 import Notifiy_Window
 import Excel_Handling as ex
@@ -35,6 +33,7 @@ import pandas as pd
 import struct
 from serial import Serial
 import Serial_com as sc
+import Lists
 
 
 
@@ -57,7 +56,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
             # command's parameters are the x and y coordinates for the various widgets it creates
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 300, 50, 300, 350, 300, 300, 300, 90, 340, 222, 270, 222)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 300, 50, 300, 350, 300, 300, 300, 90, 340, 222, 270, 222, 300, 10)
 
             self.label_title1 = Label(self.frame_root, text="AOO Pacing Mode")
             self.label_title1.config(font=("Courier", 11))
@@ -92,7 +91,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 190, 60, 240, 300, 50, 300, 310, 300, 260, 300, 90, 155, 392, 80, 392)
+            self.common(155, 192, 155, 242, 60, 190, 60, 240, 300, 50, 300, 310, 300, 260, 300, 90, 155, 392, 80, 392, 300, 10)
 
             self.label_title2 = Label(self.frame_root, text="VOO Pacing Mode")
             self.label_title2.config(font=("Courier", 15))
@@ -115,7 +114,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 190, 60, 240, 430, 60, 400, 420, 400, 370, 430, 100, 410, 342, 338, 342)
+            self.common(155, 192, 155, 242, 60, 190, 60, 240, 430, 60, 400, 420, 400, 370, 430, 100, 410, 342, 338, 342, 430, 20)
 
             self.label_title3 = Label(self.frame_root, text="AAI Pacing Mode")
             self.label_title3.config(font=("Courier", 15))
@@ -159,7 +158,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(180, 182, 180, 232, 85, 182, 85, 232, 430, 60, 400, 350, 400, 300, 430, 100, 410, 272, 338, 272)
+            self.common(180, 182, 180, 232, 85, 182, 85, 232, 430, 60, 400, 350, 400, 300, 430, 100, 410, 272, 338, 272,  430, 20)
 
             self.label_title4 = Label(self.frame_root, text="VVI Pacing Mode")
             self.label_title4.config(font=("Courier", 12))
@@ -201,7 +200,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 13))
             self.label_title2.place(x=120, y=145)
 
-            self.common(140, 172, 140, 222, 50, 170, 50, 220, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222)
+            self.common(140, 172, 140, 222, 50, 170, 50, 220, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222,  300, 10)
 
             self.label.AV_del = Label(self.frame_root, text="Fixed Av Delay:")
             self.label.AV_del.place(x=57, y=272)
@@ -235,7 +234,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=180, y=145)
 
-            self.common(145, 172, 145, 222, 50, 172, 50, 222, 430, 60, 160, 450, 230, 450, 430, 100, 400, 462, 315, 462)
+            self.common(145, 172, 145, 222, 50, 172, 50, 222, 430, 60, 160, 450, 230, 450, 430, 100, 400, 462, 315, 462, 430, 20)
 
             self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
             self.label_Sensor_Rate.place(x=50, y=270)
@@ -311,6 +310,10 @@ class Parameter_Window:
             self.button_signout = Button(self.frame_root, image=self.signout_image)
             self.button_signout.config(command=self.To_login)
             self.button_signout.place(x=1400, y=75)
+
+            self.button_list = Button(self.frame_root,text="Parameter List")
+            self.button_list.config(command=self.Parameter_List)
+            self.button_list.place(x=1400, y=5)
 
             self.entry_Recv_Time = Entry(self.frame_root)
             self.entry_Recv_Time.place(x=125, y=172)
@@ -429,7 +432,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=320, y=120)
 
-            self.common(145, 172, 145, 222, 50, 172, 50, 222, 750, 30, 330, 460, 400, 460, 750, 70, 710, 272, 640, 272)
+            self.common(145, 172, 145, 222, 50, 172, 50, 222, 750, 30, 330, 460, 400, 460, 750, 70, 710, 272, 640, 272, 750, 0)
 
             self.entry_AV_Sensor_Rate = Entry(self.frame_root)
             self.entry_AV_Sensor_Rate.place(x=145, y=272)
@@ -495,7 +498,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 360, 322, 288, 322)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 360, 322, 288, 322, 400, 10)
 
             self.entry_AV_Sensor_Rate = Entry(self.frame_root)
             self.entry_AV_Sensor_Rate.place(x=125, y=272)
@@ -540,7 +543,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=300, y=120)
 
-            self.common(150, 172, 150, 222, 55, 170, 55, 220, 700, 30, 700, 370, 700, 320, 700, 70, 700, 222, 628, 222)
+            self.common(150, 172, 150, 222, 55, 170, 55, 220, 700, 30, 700, 370, 700, 320, 700, 70, 700, 222, 628, 222, 700, 0)
 
             self.entry_Sensor_Rate = Entry(self.frame_root)
             self.entry_Sensor_Rate.place(x=150, y=272)
@@ -601,7 +604,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 350, 322, 278, 322)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 350, 322, 278, 322, 400, 10)
 
             self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
             self.label_Sensor_Rate.place(x=30, y=272)
@@ -637,7 +640,7 @@ class Parameter_Window:
     # All widgets are created in common() are common between all 4 pacing mode. Because the layout for the window of
     # each mode is different we will just pass the x and y coord as parameters when the method is called
     def common(self, upperlimx, upperlimy, lowerlimx, lowerlimy, upperlimx2, upperlimy2, lowerlimx2, lowerlimy2, backx,
-               backy, okx, oky, applyx, applyy, signoutx, signouty, BPMX, BPMY, BPMX2, BPMY2):
+               backy, okx, oky, applyx, applyy, signoutx, signouty, BPMX, BPMY, BPMX2, BPMY2, listx, listy):
         self.entry_Upperlim = Entry(self.frame_root)
         self.entry_Upperlim.place(x=upperlimx, y=upperlimy)
         self.entry_Lowerlim = Entry(self.frame_root)
@@ -671,12 +674,18 @@ class Parameter_Window:
         self.button_signout.config(command=self.To_login)
         self.button_signout.place(x=signoutx, y=signouty)
 
+        self.button_signout = Button(self.frame_root, text="Parameter Limits")
+        self.button_signout.config(command=self.Parameter_List)
+        self.button_signout.place(x=listx, y=listy)
+
     def from_Parameter_Window(self):  # Returns to the pacing screen
         Notifiy_Window.Notify_window(10, self.frame_root, self.master, self.df, 1, self.user)
 
     def To_login(self):
         Notifiy_Window.Notify_window(9, self.frame_root, self.master, self.df, 0, self.user)
 
+    def Parameter_List(self):
+        Lists.Parameter_List()
 
     def Apply(self):  # Apply will save the #parameters in the entry fields and return to the pacing screen
         if self.mode == 1:

@@ -28,10 +28,7 @@ import tkinter as tk
 from tkinter import*
 import Login_Screen
 import Excel_Handling as ex
-from serial import Serial
 import threading
-import time
-import serial.tools.list_ports
 import Serial_com as sc
 
 
