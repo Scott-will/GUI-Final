@@ -104,6 +104,9 @@ class Notify_window():  # Class to warn users of errors various errors or to not
             elif error == 8:
                 error7_label = Label(self.box, text="Invalid Parameter")
                 error7_label.place(x=80, y=20)
+            elif error == 9:
+                error9_label = Label(self.box, text = "No board connected")
+                error9_label.place(x = 80, y = 20)
 
 
 

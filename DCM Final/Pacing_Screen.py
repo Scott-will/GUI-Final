@@ -33,6 +33,7 @@ from tkinter import *
 import tkinter as tk
 import Login_Screen
 import Notifiy_Window
+from serial import Serial
 
 import Paramter_Window
 
@@ -69,7 +70,7 @@ class Pacing_Window:
 
         self.VOO_image = tk.PhotoImage(file="VOO.png")
         self.VOO_button = Button(self.frame_root, image=self.VOO_image)
-        self.VOO_button.config(command=lambda: self.To_Parameters(2))
+        self.VOO_button.config(command=lambda: self.To_Parameters(0))
         self.VOO_button.place(x=80, y=250)
 
         self.AAI_image = tk.PhotoImage(file="AAI.png")
@@ -79,42 +80,42 @@ class Pacing_Window:
 
         self.VVI_image = tk.PhotoImage(file="VVI.png")
         self.VVI_button = Button(self.frame_root, image=self.VVI_image)
-        self.VVI_button.config(command=lambda: self.To_Parameters(4))
+        self.VVI_button.config(command=lambda: self.To_Parameters(2))
         self.VVI_button.place(x=280, y=250)
 
         self.DOO_image = tk.PhotoImage(file="DOO.png")
         self.DOO_button = Button(self.frame_root, image=self.DOO_image)
-        self.DOO_button.config(command=lambda: self.To_Parameters(5))
+        self.DOO_button.config(command=lambda: self.To_Parameters(4))
         self.DOO_button.place(x=80, y=350)
 
         self.DOOR_image = tk.PhotoImage(file="DOOR.png")
         self.DOOR_button = Button(self.frame_root, image=self.DOOR_image)
-        self.DOOR_button.config(command=lambda: self.To_Parameters(6))
+        self.DOOR_button.config(command=lambda: self.To_Parameters(9))
         self.DOOR_button.place(x=280, y=350)
 
         self.DDDR_image = tk.PhotoImage(file="DDDR.png")
         self.DDDR_button = Button(self.frame_root, image=self.DDDR_image)
-        self.DDDR_button.config(command=lambda: self.To_Parameters(7))
+        self.DDDR_button.config(command=lambda: self.To_Parameters(10))
         self.DDDR_button.place(x=480, y=350)
 
         self.AAIR_image = tk.PhotoImage(file="AAIR.png")
         self.AAIR_button = Button(self.frame_root, image=self.AAIR_image)
-        self.AAIR_button.config(command=lambda: self.To_Parameters(8))
+        self.AAIR_button.config(command=lambda: self.To_Parameters(6))
         self.AAIR_button.place(x=480, y=150)
 
         self.AOOR_image = tk.PhotoImage(file="AOOR.png")
         self.AOOR_button = Button(self.frame_root, image=self.AOOR_image)
-        self.AOOR_button.config(command=lambda: self.To_Parameters(9))
+        self.AOOR_button.config(command=lambda: self.To_Parameters(5))
         self.AOOR_button.place(x=680, y=150)
 
         self.VVIR_image = tk.PhotoImage(file="VVIR.png")
         self.VVIR_button = Button(self.frame_root, image=self.VVIR_image)
-        self.VVIR_button.config(command=lambda: self.To_Parameters(10))
+        self.VVIR_button.config(command=lambda: self.To_Parameters(8))
         self.VVIR_button.place(x=480, y=250)
 
         self.VOOR_image = tk.PhotoImage(file="VOOR.png")
         self.VOOR_button = Button(self.frame_root, image=self.VOOR_image)
-        self.VOOR_button.config(command=lambda: self.To_Parameters(11))
+        self.VOOR_button.config(command=lambda: self.To_Parameters(7))
         self.VOOR_button.place(x=680, y=250)
 
     def from_Pacing_Window(self):  # Transition function from new user window to the login screen
@@ -123,5 +124,4 @@ class Pacing_Window:
     def To_Parameters(self,mode):
         self.frame_root.pack_forget()
         self.ParameterWindow = Paramter_Window.Parameter_Window(self.master, mode, self.user, self.df)
-
 

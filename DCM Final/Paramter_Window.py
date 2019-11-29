@@ -47,7 +47,7 @@ class Parameter_Window:
         self.master = master
         self.df = df
         self.data = [0]*22
-        #self.board = openSerial()
+        self.board = sc.s
         self.boardID = 22
         self.data[0] = self.boardID
 
@@ -57,7 +57,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
             # command's parameters are the x and y coordinates for the various widgets it creates
-            self.common(125, 172, 125, 222, 30, 220, 30, 170, 300, 50, 300, 350, 300, 300, 300, 90, 340, 222, 270, 222)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 300, 50, 300, 350, 300, 300, 300, 90, 340, 222, 270, 222)
 
             self.label_title1 = Label(self.frame_root, text="AOO Pacing Mode")
             self.label_title1.config(font=("Courier", 11))
@@ -86,13 +86,13 @@ class Parameter_Window:
 
 
 
-        elif self.mode == 2:
+        elif self.mode == 0:
             self.background_image = tk.PhotoImage(file="backgroundpacingAOOVOO.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 240, 60, 190, 300, 50, 300, 310, 300, 260, 300, 90, 155, 392, 80, 392)
+            self.common(155, 192, 155, 242, 60, 190, 60, 240, 300, 50, 300, 310, 300, 260, 300, 90, 155, 392, 80, 392)
 
             self.label_title2 = Label(self.frame_root, text="VOO Pacing Mode")
             self.label_title2.config(font=("Courier", 15))
@@ -115,7 +115,7 @@ class Parameter_Window:
             self.label.image = self.background_image
             self.label.pack()
 
-            self.common(155, 192, 155, 242, 60, 240, 60, 190, 430, 60, 400, 420, 400, 370, 430, 100, 410, 342, 338, 342)
+            self.common(155, 192, 155, 242, 60, 190, 60, 240, 430, 60, 400, 420, 400, 370, 430, 100, 410, 342, 338, 342)
 
             self.label_title3 = Label(self.frame_root, text="AAI Pacing Mode")
             self.label_title3.config(font=("Courier", 15))
@@ -153,7 +153,7 @@ class Parameter_Window:
 
 
 
-        elif self.mode == 4:
+        elif self.mode == 2:
             self.background_image = tk.PhotoImage(file="backgroundpacingVIIAAI.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -161,7 +161,7 @@ class Parameter_Window:
 
             self.common(180, 182, 180, 232, 85, 182, 85, 232, 430, 60, 400, 350, 400, 300, 430, 100, 410, 272, 338, 272)
 
-            self.label_title4 = Label(self.frame_root, text="VII Pacing Mode")
+            self.label_title4 = Label(self.frame_root, text="VVI Pacing Mode")
             self.label_title4.config(font=("Courier", 12))
             self.label_title4.place(x=210, y=150)
             self.label_Amp = Label(self.frame_root, text="Ventricle Amplitude:")
@@ -191,7 +191,7 @@ class Parameter_Window:
             self.entry_Rate_Smooth.place(x=410, y=232)
 
 
-        elif self.mode == 5:
+        elif self.mode == 4:
             self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -201,7 +201,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 13))
             self.label_title2.place(x=120, y=145)
 
-            self.common(140, 172, 140, 222, 50, 220, 50, 170, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222)
+            self.common(140, 172, 140, 222, 50, 170, 50, 220, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222)
 
             self.label.AV_del = Label(self.frame_root, text="Fixed Av Delay:")
             self.label.AV_del.place(x=57, y=272)
@@ -225,7 +225,7 @@ class Parameter_Window:
             self.entry_Pulse_Width = Entry(self.frame_root)
             self.entry_Pulse_Width.place(x=360, y=172)
 
-        elif self.mode == 6:
+        elif self.mode == 9:
             self.background_image = tk.PhotoImage(file="backgroundpacingVIIAAI.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -285,7 +285,7 @@ class Parameter_Window:
 
 
 
-        elif self.mode == 7:
+        elif self.mode == 10:
             self.background_image = tk.PhotoImage(file="backgroundpacing2.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -419,7 +419,7 @@ class Parameter_Window:
             self.label_BPM = Label(self.frame_root, text="Target BPM:")
             self.label_BPM.place(x=840, y=420)
 
-        elif self.mode == 8:
+        elif self.mode == 6:
             self.background_image = tk.PhotoImage(file="backgroundpacing3.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -485,7 +485,7 @@ class Parameter_Window:
             self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
             self.label_Resp_Fact.place(x=615, y=222)
 
-        elif self.mode == 9:
+        elif self.mode == 5:
             self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
             self.label = Label(self.frame_root, image=self.background_image)
             self.label.image = self.background_image
@@ -495,7 +495,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 220, 30, 170, 400, 50, 350, 420, 350, 370, 400, 90, 360, 322, 288, 322)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 360, 322, 288, 322)
 
             self.entry_AV_Sensor_Rate = Entry(self.frame_root)
             self.entry_AV_Sensor_Rate.place(x=125, y=272)
@@ -530,7 +530,7 @@ class Parameter_Window:
             self.label_Resp_Fact.place(x=265, y=222)
 
 
-        elif self.mode == 10:
+        elif self.mode == 8:
 
             self.background_image = tk.PhotoImage(file="backgroundpacing3.png")
             self.label = Label(self.frame_root, image=self.background_image)
@@ -540,7 +540,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=300, y=120)
 
-            self.common(150, 172, 150, 222, 55, 220, 55, 170, 700, 30, 700, 370, 700, 320, 700, 70, 700, 222, 628, 222)
+            self.common(150, 172, 150, 222, 55, 170, 55, 220, 700, 30, 700, 370, 700, 320, 700, 70, 700, 222, 628, 222)
 
             self.entry_Sensor_Rate = Entry(self.frame_root)
             self.entry_Sensor_Rate.place(x=150, y=272)
@@ -591,7 +591,7 @@ class Parameter_Window:
             self.label_Recv_Time.place(x=610, y=172)
 
 
-        elif self.mode == 11:
+        elif self.mode == 7:
 
             self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
             self.label = Label(self.frame_root, image=self.background_image)
@@ -601,7 +601,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 15))
             self.label_title2.place(x=160, y=145)
 
-            self.common(125, 172, 125, 222, 30, 220, 30, 170, 400, 50, 350, 420, 350, 370, 400, 90, 350, 322, 278, 322)
+            self.common(125, 172, 125, 222, 30, 170, 30, 220, 400, 50, 350, 420, 350, 370, 400, 90, 350, 322, 278, 322)
 
             self.label_Sensor_Rate = Label(self.frame_root, text="Max Sensor Rate:")
             self.label_Sensor_Rate.place(x=30, y=272)
@@ -765,7 +765,6 @@ class Parameter_Window:
                     if success == True:
                         self.writeParameters()
                         ex.saveDataFrame(self.df)
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
 
@@ -807,17 +806,15 @@ class Parameter_Window:
                     else:
                         success = False
                         print('no')
-                   if int(self.entry_BPM.get()) >= int(self.entry_Lowerlim.get()) and int(self.entry_BPM.get()) <= int(self.entry_Upperlim.get()):
+                    if int(self.entry_BPM.get()) >= int(self.entry_Lowerlim.get()) and int(self.entry_BPM.get()) <= int(self.entry_Upperlim.get()):
                         self.df[self.df['Users'].iloc[i], 'AOO BPM'] = int(self.entry_BPM.get())
                         self.data[2] = int(self.entry_BPM.get())
-                   else:
-                      success = False
+                    else:
+                        success = False
 
             if success == True:
                 self.writeParameters()
                 ex.saveDataFrame(self.df)
-                Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
-                print(self.data)
             else:
                 Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
                 print(self.data)
@@ -831,6 +828,7 @@ class Parameter_Window:
     def save_VVI(self):
         try:
             for i in range(0, 20, 2):
+                success = True
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
                     if int(self.entry_Lowerlim.get()) in range(45, 66):
@@ -868,17 +866,13 @@ class Parameter_Window:
                         #self.data[16] = int(self.entry_Rate_Smooth.get())
                     else:
                         success = False
-                   if int(self.entry_BPM.get()) >= int(self.entry_Lowerlim.get()) and int(self.entry_BPM.get()) <= int(self.entry_Upperlim.get()):
+                    if int(self.entry_BPM.get()) >= int(self.entry_Lowerlim.get()) and int(self.entry_BPM.get()) <= int(self.entry_Upperlim.get()):
                         self.df[self.df['Users'].iloc[i], 'VVI BPM'] = int(self.entry_BPM.get())
                         self.data[4] = int(self.entry_BPM.get())
-                   else:
+                    else:
                        success = False
                     if success == True:
-                        try:
-                            self.writeParameters()
-                            Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
-                        except FileNotFoundError:
-                            Notifiy_Window.Notify_window()
+                        self.writeParameters()
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -891,6 +885,7 @@ class Parameter_Window:
         try:
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
+                    success = True
                     self.data[1] = self.mode
                     if int(self.entry_Lowerlim.get()) in range(45, 66):
                         self.df[self.df['Users'].iloc[i], 'AAI Lower Rate Limit'] = int(self.entry_Lowerlim.get())
@@ -934,7 +929,6 @@ class Parameter_Window:
                         success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8, self.frame_root, self.master, self.df, 2, self.user)
@@ -944,6 +938,7 @@ class Parameter_Window:
 
     def save_DOO(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -984,7 +979,6 @@ class Parameter_Window:
                        success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -994,6 +988,7 @@ class Parameter_Window:
         # save parameters
     def save_AOOR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1049,7 +1044,6 @@ class Parameter_Window:
                        success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8, self.frame_root, self.master, self.df, 2, self.user)
@@ -1061,6 +1055,7 @@ class Parameter_Window:
 
     def save_AAIR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1131,7 +1126,6 @@ class Parameter_Window:
                         success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -1141,6 +1135,7 @@ class Parameter_Window:
         ##save parameters
     def save_VOOR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1196,7 +1191,6 @@ class Parameter_Window:
                         success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -1207,6 +1201,7 @@ class Parameter_Window:
         ##save parameters
     def save_VVIR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1277,7 +1272,6 @@ class Parameter_Window:
                         success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8)
@@ -1287,6 +1281,7 @@ class Parameter_Window:
         ##save parameters
     def save_DOOR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1351,7 +1346,6 @@ class Parameter_Window:
                         success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -1362,6 +1356,7 @@ class Parameter_Window:
         ##save parameters
     def save_DDDR(self):
         try:
+            success = True
             for i in range(0, 20, 2):
                 if self.user == self.df['Users'].iloc[i]:  ##find user
                     self.data[1] = self.mode
@@ -1468,7 +1463,6 @@ class Parameter_Window:
                      #   success = False
                     if success == True:
                         self.writeParameters()
-                        Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
                         ex.saveDataFrame(self.df)
                     else:
                         Notifiy_Window.Notify_window(8,self.frame_root,self.master,self.df,2,self.user)
@@ -1477,16 +1471,21 @@ class Parameter_Window:
     ##save parameters
 
     def writeParameters(self):
-        tosend = struct.pack('<BBBBBBHHBBBBHBBBHBdBBB', self.data[0], self.data[1], self.data[2], self.data[3], self.data[4],self.data[5],self.data[6],self.data[7],self.data[8],
-                             self.data[9],self.data[10], self.data[11], self.data[12], self.data[13], self.data[14], self.data[15], self.data[16], self.data[17], self.data[18], self.data[19],
-                             self.data[20], self.data[21])
-        self.transList = [0]*len(tosend)
-        i = 0
-        while i < len(tosend):
-            self.transList[i] = tosend[i]
-            i += 1
-        for i in range(500):
-            self.board.write(self.transList)
+        try:
+            tosend = struct.pack('<BBBBBBHHBBBBHBBBHBdBBB', self.data[0], self.data[1], self.data[2], self.data[3], self.data[4],self.data[5],self.data[6],self.data[7],self.data[8],
+                                 self.data[9],self.data[10], self.data[11], self.data[12], self.data[13], self.data[14], self.data[15], self.data[16], self.data[17], self.data[18], self.data[19],
+                                 self.data[20], self.data[21])
+            self.transList = [0]*len(tosend)
+            i = 0
+            while i < len(tosend):
+                self.transList[i] = tosend[i]
+                i += 1
+            for i in range(500):
+                self.board.write(self.transList)
+            Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
+
+        except:
+            Notifiy_Window.Notify_window(9, 0,0,0,2,0)
 
     def showVOO(self):
         #show old parameters

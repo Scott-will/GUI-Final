@@ -28,7 +28,10 @@ from tkinter import *
 import serial
 import Login_Screen
 #import Menu_Window
+from serial import Serial
+import threading
 import time
+import serial.tools.list_ports
 import Excel_Handling as ex
 import pandas as pd
 
@@ -38,103 +41,91 @@ import pandas as pd
 #           Serial configuration               #
 #                                              #
 ################################################
+class State:
+    state = False
 
-baud = 9600
-byte = 1
+    def __init__(self, x):
+        self.state = x
 
-class Scom:
-    def __init__(self):
-        from serial import Serial
-        self.s = Serial()
-        self.s.port = 'COM3'
-        self.s.baudrate = 115200
-        self.s.timeout = 0.5
-        self.s.dtr = 0
-
-    def startcom(self):
-        from serial import Serial
-        self.s = Serial()
-        self.s.port = 'COM3'
-        self.s.baudrate = 115200
-        self.s.timeout = 0.5
-        self.s.dtr = 0
-        self.s.open()
-        self.state = self.s.isOpen()
-        return self.state
+s = 0
+serial_init = 0
+serial_port = 0
+myports = 0
+refresh = 0.5 # Variable used to change the refresh speed of the serial status
+status = State(False)
+root = Tk()
 
 
 
 
+def check_serial():
+    global serial_init, serial_port, myports, status, s, refresh, root
+    try:
+        s = Serial()
+        s.port = 'COM6'
+        s.baudrate = 9600
+        s.timeout = 0.5
+        s.dtr = 0
+        s.open()
+        serial_init = 1
+        myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
+        print(myports)
+        serial_port = [port for port in myports if 'COM6' in port][0]
+        status.state = True
+    except:
+        print("serial not open")
+        serial_init = 0
+        status.state = False
+
+    while (1):
+        if (serial_init == 1):
+            if status.state:
+                serialopen_image = tk.PhotoImage(file="serialopen.png")
+                label_serialopen = Label(root, image=serialopen_image)
+                label_serialopen.pack()
+                time.sleep(refresh)
+                label_serialopen.pack_forget()
+
+
+            elif (not status.state):
+                serialclosed_image = tk.PhotoImage(file="serialclosed.png")
+                label_serialclosed = Label(root, image=serialclosed_image)
+                label_serialclosed.pack()
+                time.sleep(refresh)
+                label_serialclosed.pack_forget()
 
 
 
-class Serial_Window:
-    def __init__(self, master, user, df):
-        self.master = master
-        self.user = user
-        self.frame_root = Frame(self.master, width=500, height=500)
-        self.frame_root.pack()
-        self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
-        self.label = Label(self.frame_root, image=self.background_image)
-        self.label.image = self.background_image
-        self.label.pack()
-        self.df = df
+            myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
+            if serial_port not in myports:
+                status.state = False
+                serialclosed_image = tk.PhotoImage(file="serialclosed.png")
+                label_serialclosed = Label(root, image=serialclosed_image)
+                label_serialclosed.pack()
+                time.sleep(refresh)
+                label_serialclosed.pack_forget()
 
-        self.signout_image = tk.PhotoImage(file="signout.png")
-        self.button_signout = Button(self.frame_root, image=self.signout_image)
-        self.button_signout.config(command=self.from_Serial_Window)
-        self.button_signout.place(x=400, y=90)
+            time.sleep(0.1)
 
-        self.Back_image = tk.PhotoImage(file="Back.png")
-        self.button_back = Button(self.frame_root, image=self.Back_image)
-        self.button_back.config(command=self.To_Menu)
-        self.button_back.place(x=400, y=50)
-
-        self.start_image = tk.PhotoImage(file="start.png")
-        self.button_start = Button(self.frame_root, image=self.start_image)
-        self.button_start.config(command=self.startpress)
-        self.button_start.place(x=50, y=170)
-
-        self.stop_image = tk.PhotoImage(file="stop.png")
-        self.button_stop = Button(self.frame_root, image=self.stop_image)
-        #self.button_start.config(command=self.stoppress)
-        self.button_stop.place(x=50, y=310)
-
-        self.serialclosed_image = tk.PhotoImage(file="serialclosed.png")
-        self.label_serialclosed = Label(self.frame_root, image=self.serialclosed_image)
-        self.label_serialclosed.place(x=350, y=250)
-
-    def startpress(self):
-            if Scom.startcom(self):
-                self.serialopen_image = tk.PhotoImage(file="serialopen.png")
-                self.label_serialopen = Label(self.frame_root, image=self.serialopen_image)
-                self.label_serialopen.place(x=350, y=250)
-            else:
-                self.serialclosed_image = tk.PhotoImage(file="serialclosed.png")
-                self.label_serialclosed = Label(self.frame_root, image=self.serialclosed_image)
-                self.label_serialclosed.place(x=350, y=250)
-
-    def from_Serial_Window(self):
-        self.frame_root.pack_forget()
-        self.LoginScreen = Login_Screen.Login_Window(self.master, self.df)
-
-    def To_Menu(self):
-        self.frame_root.pack_forget()
-        self.menu = Menu_Window.menu(self.master, self.user, self.df)
-
-    def SendData(self, data):
-        ##first i send the mode, then parameters, then done note
-        ##hex16 says im writing
-        ##hex55 says read this data
-        ##mode, parameters of size buffer
-        ##send 16, 22 for done.
-        for i in data:
-            serial.write(i)
-        serial.write()
-
-    def testSend(self):
-        data = [hex(2)]
-        data.insert(0, hex(55))
-        data.insert(0, hex(16))
-        print(data)
-        serial.write(data)
+        elif (serial_init == 0):
+            serialclosed_image = tk.PhotoImage(file="serialclosed.png")
+            label_serialclosed = Label(root, image=serialclosed_image)
+            label_serialclosed.pack()
+            time.sleep(refresh)
+            label_serialclosed.pack_forget()
+            try:
+                s = Serial()
+                s.port = 'COM6'
+                s.baudrate = 9600
+                s.timeout = 0.5
+                s.dtr = 0
+                s.open()
+                serial_init = 1
+                myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
+                print(myports)
+                serial_port = [port for port in myports if 'COM6' in port][0]
+                status.state = True
+            except:
+                print("serial not open")
+                serial_init = 0
+                status.state = False
