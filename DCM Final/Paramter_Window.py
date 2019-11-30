@@ -200,7 +200,7 @@ class Parameter_Window:
             self.label_title2.config(font=("Courier", 13))
             self.label_title2.place(x=120, y=145)
 
-            self.common(140, 172, 140, 222, 50, 170, 50, 220, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222,  300, 10)
+            self.common(140, 172, 140, 222, 46, 170, 46, 220, 300, 50, 300, 350, 300, 300, 300, 90, 360, 222, 290, 222,  300, 10)
 
             self.label.AV_del = Label(self.frame_root, text="Fixed Av Delay:")
             self.label.AV_del.place(x=57, y=272)
@@ -448,7 +448,7 @@ class Parameter_Window:
             self.label_Amp = Label(self.frame_root, text="Atrial Amplitude:")
             self.label_Amp.place(x=50, y=322)
             self.label_Pulse_Width = Label(self.frame_root, text="Atrial Pulse Width:")
-            self.label_Pulse_Width.place(x=45, y=372)
+            self.label_Pulse_Width.place(x=41, y=372)
             self.label_Sens = Label(self.frame_root, text="Atrial Sensitivity:")
             self.label_Sens.place(x=50, y=422)
 
@@ -474,7 +474,7 @@ class Parameter_Window:
             self.label_Rate_Smooth = Label(self.frame_root, text="Rate Smoothing:")
             self.label_Rate_Smooth.place(x=355, y=322)
             self.label_Act_Thres = Label(self.frame_root, text="Activity Threshold:")
-            self.label_Act_Thres.place(x=347, y=372)
+            self.label_Act_Thres.place(x=344, y=372)
             self.label_React_Time = Label(self.frame_root, text="Reaction Time:")
             self.label_React_Time.place(x=365, y=422)
 
