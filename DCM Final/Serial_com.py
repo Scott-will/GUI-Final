@@ -51,7 +51,13 @@ refresh = 0.5 # Variable used to change the refresh speed of the serial status
 status = State(False)
 root = Tk()
 
-
+def verify():
+    verify = 0
+    # write code here to verify the correct board is connected
+    if verify == 0:
+        return 0
+    elif verify == 1:
+        return 1
 
 
 def check_serial():
@@ -68,13 +74,14 @@ def check_serial():
         print(myports)
         serial_port = [port for port in myports if 'COM6' in port][0]
         status.state = True
+        verification = verify()
     except:
         print("serial not open")
         serial_init = 0
         status.state = False
 
     while (1):
-        if (serial_init == 1):
+        if (serial_init == 1 & verification ==1):
             if status.state:
                 serialopen_image = tk.PhotoImage(file="serialopen.png")
                 label_serialopen = Label(root, image=serialopen_image)
@@ -121,6 +128,7 @@ def check_serial():
                 print(myports)
                 serial_port = [port for port in myports if 'COM6' in port][0]
                 status.state = True
+                verification = verify()
             except:
                 print("serial not open")
                 serial_init = 0

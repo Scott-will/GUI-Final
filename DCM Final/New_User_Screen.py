@@ -115,6 +115,7 @@ class New_User_Window:
                                 # self.df.rename(index = {self.df['Users'].iloc[i+1] : password.encode()})
                                 ex.saveDataFrame(self.df)
                                 Notifiy_Window.Notify_window(5, 0, 0, 0, 2, 0)
+                                self.from_new_user()
                                 break
 
                 else:

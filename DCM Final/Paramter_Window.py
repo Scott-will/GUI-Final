@@ -1522,7 +1522,7 @@ class Parameter_Window:
         #show old parameters
         for i in range(0, 20, 2):
             if self.df['Users'].iloc[i] == self.user:
-                self.entry_Lowerlim.insert(0, str(int(self.df.at[i 'AOO Lower Rate Limit'])))#])']#[self.df['Users'].iloc[i], 'AOO Lower Rate Limit'])
+                self.entry_Lowerlim.insert(0, str(int(self.df.at[i,'AOO Lower Rate Limit'])))#])']#[self.df['Users'].iloc[i], 'AOO Lower Rate Limit'])
                 self.entry_UpperLim.insert(0, str(int(self.df.at[i, 'AOO Upper Rate Limit'])))
                 self.entry_Pulse_Width.insert(0, str(int(self.df.at[i, 'AOO Pulse Width'])))
                 self.entry_AV_Amp.insert(0, str(int(self.df.at[i, 'AOO Atrial Amplitude'])))
@@ -1550,7 +1550,7 @@ class Parameter_Window:
                 self.entry_Pulse_Width.insert(0, str(int(self.df.at[i, 'AAI Pulse Width'])))
                 self.entry_AV_Amp.insert(0, str(int(self.df.at[i, 'AAI Atrial Amplitude'])))
                 self.entry_AV_Sens.insert(0, str(int(self.df.at[i, 'AAI Atrial Sensitivity'])))
-                self.entry_ARP.insert(0, str(int(self.df[self.df.at[i, 'AAI VRP'])))
+                self.entry_ARP.insert(0, str(int(self.df.at[i, 'AAI VRP'])))
                 self.entry_Rate_Smooth.insert(0, str(int(self.df.at[i, 'AAI Rate Smoothing'])))
                 self.entry_BPM.insert(0, str(int(self.df.at[i, 'AAI BPM'])))
 
@@ -1587,7 +1587,7 @@ class Parameter_Window:
                 self.entry_Lowerlim.insert(0, str(int(self.df.at[i, 'AAIR Lower Rate Limit'])))
                 self.entry_UpperLim.insert(0, str(int(self.df.at[i, 'AAIR Upper Rate Limit'])))
                 self.entry_Pulse_Width.insert(0, str(int(self.df.at[i, 'AAIR Pulse Width'])))
-                self.entry_AV_Amp.insert(0, str)int(self.df.at[i, 'AAIR Atrial Amplitude'])))
+                self.entry_AV_Amp.insert(0, str(int(self.df.at[i, 'AAIR Atrial Amplitude'])))
                 self.entry_AV_Sensor_Rate.insert(0, str(int(self.df.at[i, 'AAIR Sensor Rate'])))
                 self.entry_AV_Sens.insert(0, str(int(self.df.at[i, 'AAIR Atrial Sensitivity'])))
                 self.entry_Rate_Smooth.insert(0, str(int(self.df.at[i, 'AAIR Rate Smoothing'])))
@@ -1620,7 +1620,7 @@ class Parameter_Window:
                 self.entry_Lowerlim.insert(0, str(int(self.df.at[i, 'VVIR Lower Rate Limit'])))
                 self.entry_UpperLim.insert(0, str(int(self.df.at[i, 'VVIR Upper Rate Limit'])))
                 self.entry_Pulse_Width.insert(0, str(int(self.df.at[i, 'VVIR Pulse Width'])))
-                self.entry_AV_Amp.insert(0, str)int(self.df.at[i, 'VVIR Ventrical Amplitude'])))
+                self.entry_AV_Amp.insert(0, str(int(self.df.at[i, 'VVIR Ventrical Amplitude'])))
                 self.entry_AV_Sensor_Rate.insert(0, str(int(self.df.at[i, 'VVIR Sensor Rate'])))
                 self.entry_AV_Sens.insert(0, str(int(self.df.at[i, 'VVIR Ventrical Sensitivity'])))
                 self.entry_Rate_Smooth.insert(0, str(int(self.df.at[i, 'VVIR Rate Smoothing'])))
