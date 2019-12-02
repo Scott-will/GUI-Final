@@ -37,6 +37,7 @@ import Lists
 
 
 
+
 class Parameter_Window:
     def __init__(self, master, mode, user, df):
         self.frame_root = Frame(master, width=1500, height=500)
@@ -45,10 +46,10 @@ class Parameter_Window:
         self.user = user
         self.master = master
         self.df = df
-        self.data = [0]*22
+        self.data = [1, 9, 60, 150, 250, 75, 10, 70, 250, 105, 20, 2, 8]
         self.board = sc.s
-        self.boardID = 22
-        self.data[0] = self.boardID
+        #self.boardID = 22
+        #self.data[0] = 22
 
         if self.mode == 1:
             self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
@@ -82,6 +83,7 @@ class Parameter_Window:
             self.entry_ARP.place(x=125, y=420)
             self.entry_PVARP = Entry(self.frame_root)
             self.entry_PVARP.place(x=340, y=172)
+            self.showAOO()
 
 
 
@@ -105,6 +107,7 @@ class Parameter_Window:
             self.entry_AV_Amp.place(x=155, y=292)
             self.entry_Pulse_Width = Entry(self.frame_root)
             self.entry_Pulse_Width.place(x=155, y=342)
+            self.showVOO()
 
 
 
@@ -149,6 +152,7 @@ class Parameter_Window:
             self.entry_Hyst.place(x=410, y=242)
             self.entry_Rate_Smooth = Entry(self.frame_root)
             self.entry_Rate_Smooth.place(x=410, y=292)
+            self.showAAI()
 
 
 
@@ -188,6 +192,7 @@ class Parameter_Window:
             self.entry_Hyst.place(x=410, y=182)
             self.entry_Rate_Smooth = Entry(self.frame_root)
             self.entry_Rate_Smooth.place(x=410, y=232)
+            self.showVVI()
 
 
         elif self.mode == 4:
@@ -223,6 +228,7 @@ class Parameter_Window:
             self.entry_Pulse_Width.place(x=140, y=422)
             self.entry_Pulse_Width = Entry(self.frame_root)
             self.entry_Pulse_Width.place(x=360, y=172)
+            self.showDOO()
 
         elif self.mode == 9:
             self.background_image = tk.PhotoImage(file="backgroundpacingVIIAAI.png")
@@ -281,6 +287,7 @@ class Parameter_Window:
             self.entry_Recv_Time.place(x=145, y=370)
             self.entry_Resp_Fact = Entry(self.frame_root)
             self.entry_Resp_Fact.place(x=145, y=420)
+            self.showDOOR()
 
 
 
@@ -421,6 +428,7 @@ class Parameter_Window:
             self.label_React_Time.place(x=830, y=370)
             self.label_BPM = Label(self.frame_root, text="Target BPM:")
             self.label_BPM.place(x=840, y=420)
+            self.showDDDR()
 
         elif self.mode == 6:
             self.background_image = tk.PhotoImage(file="backgroundpacing3.png")
@@ -487,6 +495,7 @@ class Parameter_Window:
             self.label_Recv_Time.place(x=621, y=172)
             self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
             self.label_Resp_Fact.place(x=615, y=222)
+            self.showAAIR()
 
         elif self.mode == 5:
             self.background_image = tk.PhotoImage(file="backgroundpacing1.png")
@@ -531,6 +540,7 @@ class Parameter_Window:
             self.label_Recv_Time.place(x=270, y=172)
             self.label_Resp_Fact = Label(self.frame_root, text="Response Factor:")
             self.label_Resp_Fact.place(x=265, y=222)
+            self.showAOOR()
 
 
         elif self.mode == 8:
@@ -592,6 +602,7 @@ class Parameter_Window:
             self.label_Resp_Fact.place(x=295, y=422)
             self.label_Recv_Time = Label(self.frame_root, text="Recovery Time:")
             self.label_Recv_Time.place(x=610, y=172)
+            self.showVVIR()
 
 
         elif self.mode == 7:
@@ -636,6 +647,7 @@ class Parameter_Window:
             self.entry_Resp_Fact.place(x=350, y=222)
             self.entry_Recv_Time = Entry(self.frame_root)
             self.entry_Recv_Time.place(x=350, y=272)
+            self.showVOOR()
 
     # All widgets are created in common() are common between all 4 pacing mode. Because the layout for the window of
     # each mode is different we will just pass the x and y coord as parameters when the method is called
@@ -690,7 +702,7 @@ class Parameter_Window:
     def Apply(self):  # Apply will save the #parameters in the entry fields and return to the pacing screen
         if self.mode == 1:
             self.save_AOO()
-        elif self.mode == 2:
+        elif self.mode == 0:
             self.save_VOO()
         elif self.mode == 3:
             self.save_AAI()
@@ -744,15 +756,15 @@ class Parameter_Window:
         try:
             success =  True
             for i in range(0, 20, 2):
-                if self.user == self.df['Users'].iloc[i]:  ##find user
-                    data[1] = self.mode
+                if self.user == self.df.iat[i, 0]:  #['Users'].iloc[i]:  ##find user
+                    self.data[1] = self.mode
                     if int(self.entry_Lowerlim.get()) in range(45, 66):
-                        self.df[self.df['Users'].iloc[i], 'VOO Lower Rate Limit'] = int(self.entry_Lowerlim.get())
+                        self.df.at[i, 'VOO Lower Rate Limit'] = int(self.entry_Lowerlim.get())#df['Users'].iloc[i], 'VOO Lower Rate Limit'] = int(self.entry_Lowerlim.get())
                         #self.data[2] = int(self.entry_Lowerlim.get())
                     else:
                         success = False
                     if int(self.entry_Upperlim.get()) in range(120, 151):
-                        self.df[self.df['Users'].iloc[i], 'VOO Upper Rate Limit'] = int(self.entry_UpperLim.get())
+                        self.df[self.df['Users'].iloc[i], 'VOO Upper Rate Limit'] = int(self.entry_Upperlim.get())
                         #self.data[3] = int(self.entry_UpperLim.get())
                     else:
                         success = False
@@ -763,7 +775,7 @@ class Parameter_Window:
                         success = False
                     if int(self.entry_AV_Amp.get()) in range(50, 101):
                         self.df[self.df['Users'].iloc[i], 'VOO Ventrical Amplitude'] = int(self.entry_AV_Amp.get())
-                        self.data[5] = int(self.entry_AV_Amp.get())/100
+                        self.data[5] = int(self.entry_AV_Amp.get())
                     else:
                         success = False
                     if int(self.entry_BPM.get()) >= int(self.entry_Lowerlim.get()) and int(self.entry_BPM.get()) <= int(self.entry_Upperlim.get()):
@@ -1480,10 +1492,10 @@ class Parameter_Window:
     ##save parameters
 
     def writeParameters(self):
-        try:
-            tosend = struct.pack('<BBBBBBHHBBBBHBBBHBdBBB', self.data[0], self.data[1], self.data[2], self.data[3], self.data[4],self.data[5],self.data[6],self.data[7],self.data[8],
-                                 self.data[9],self.data[10], self.data[11], self.data[12], self.data[13], self.data[14], self.data[15], self.data[16], self.data[17], self.data[18], self.data[19],
-                                 self.data[20], self.data[21])
+        #try:
+            tosend = struct.pack('<BBBBHBBBHdBBB', self.data[0], self.data[1],self.data[2], self.data[3], self.data[4], self.data[5], self.data[6], self.data[7], self.data[8]
+        , self.data[9], self.data[10], self.data[11], self.data[12])
+        #BBBBBBHHBBBBHBBBHBdB
             self.transList = [0]*len(tosend)
             i = 0
             while i < len(tosend):
@@ -1493,28 +1505,31 @@ class Parameter_Window:
                 self.board.write(self.transList)
             Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
 
-        except:
-            Notifiy_Window.Notify_window(9, 0,0,0,2,0)
+        #except:
+            #Notifiy_Window.Notify_window(9, 0,0,0,2,0)
 
     def showVOO(self):
         #show old parameters
         for i in range(0, 20, 2):
             if self.df['Users'].iloc[i] == self.user:
-                self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'VOO Lower Rate Limit'])
-                self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'VOO Upper Rate Limit'])
-                self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VOO Pulse Width'])
-                self.entry_AV_Amp.insert(self.df[self.df['Users'].iloc[i], 'VOO Ventrical Amplitude'])
-                self.entry_BPM.insert(self.df[self.df['Users'].iloc[i], 'VOO BPM'])
+                print(type(self.df.at[i, 'VOO Lower Rate Limit']))
+                x = str(int(self.df.at[i, 'VOO Lower Rate Limit']))
+                print(x)
+                self.entry_Lowerlim.insert(0, x)
+                #self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'VOO Upper Rate Limit'])
+                #self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'VOO Pulse Width'])
+                #self.entry_AV_Amp.insert(self.df[self.df['Users'].iloc[i], 'VOO Ventrical Amplitude'])
+                #self.entry_BPM.insert(self.df[self.df['Users'].iloc[i], 'VOO BPM'])
 
     def showAOO(self):
         #show old parameters
         for i in range(0, 20, 2):
             if self.df['Users'].iloc[i] == self.user:
-                self.entry_Lowerlim.insert(self.df[self.df['Users'].iloc[i], 'AOO Lower Rate Limit'])
-                self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'AOO Upper Rate Limit'])
-                self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'AOO Pulse Width'])
-                self.entry_AV_Amp.insert(self.df[self.df['Users'].iloc[i], 'AOO Atrial Amplitude'])
-                self.entry_BPM.insert(self.df[self.df['Users'].iloc[i], 'AOO BPM'])
+                self.entry_Lowerlim.insert(self.df[self.user, 'AOO Lower Rate Limit'])#])']#[self.df['Users'].iloc[i], 'AOO Lower Rate Limit'])
+                #self.entry_UpperLim.insert(self.df[self.df['Users'].iloc[i], 'AOO Upper Rate Limit'])
+                #self.entry_Pulse_Width.insert(self.df[self.df['Users'].iloc[i], 'AOO Pulse Width'])
+                #self.entry_AV_Amp.insert(self.df[self.df['Users'].iloc[i], 'AOO Atrial Amplitude'])
+                #self.entry_BPM.insert(self.df[self.df['Users'].iloc[i], 'AOO BPM'])
 
     def showVVI(self):
         # show old parameters

@@ -109,8 +109,8 @@ class New_User_Window:
                             if pd.isnull(self.df['Username'].iloc[i]):  ##add to excel file and save
                                 self.df.iat[i, 1] = 1
                                 self.df.iat[i, 2] = 1
-                                self.df.iat[i, 0] = username.encode()
-                                self.df.iat[i + 1, 0] = password.encode()
+                                self.df.iat[i, 0] = username
+                                self.df.iat[i + 1, 0] = password
                                 # self.df.rename(index = {self.df['Users'].iloc[i] : username.encode()})
                                 # self.df.rename(index = {self.df['Users'].iloc[i+1] : password.encode()})
                                 ex.saveDataFrame(self.df)

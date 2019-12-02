@@ -80,10 +80,10 @@ class Login_Window:  # Class for the create of the main login window
         password = self.entry_pass.get()
         username = self.entry_user.get()
         success = 0  ##variable to check if need to call error window
-
+        print(self.df.head())
         for i in range(0, 20, 2):  # checks if user exists and password is correct
-            if self.df['Users'].iloc[i] == username:
-                if password == self.df['Users'].iloc[i + 1]:
+            if self.df.iat[i, 0] == username:
+                if password == self.df.iat[i + 1, 0]:
                     self.frame_root.pack_forget()
                     self.pacingscreen = Pacing_Screen.Pacing_Window(self.master, username, self.df)
                     success = 1
