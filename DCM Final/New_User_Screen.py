@@ -98,6 +98,7 @@ class New_User_Window:
                     for i in username:
                         if i.isdigit():  # check if their is a number in the username
                             isnumber_username = True
+
                     if len(password) > 5:  ##check if length greater than 5  and if there is a number
                         for i in username:
                             if i.isdigit():
@@ -118,8 +119,10 @@ class New_User_Window:
                                 self.from_new_user()
                                 break
 
+                    else:
+                        error = Notifiy_Window.Notify_window(4, 0, 0, 0, 2, 0)
                 else:
-                    error = Notifiy_Window.Notify_window(4, 0, 0, 0, 2, 0)
+                    Notifiy_Window.Notify_window(3, 0, 0, 0, 2, 0)
             else:
                 Notifiy_Window.Notify_window(1, 0, 0, 0, 2, 0)
         else:

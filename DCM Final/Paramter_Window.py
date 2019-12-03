@@ -1532,7 +1532,7 @@ class Parameter_Window:
     ##save parameters
 
     def writeParameters(self):
-        #try:
+        try:
             tosend = struct.pack('<BBBBHBBBHdBBB', self.data[0], self.data[1],self.data[2], self.data[3], self.data[4], self.data[5], self.data[6], self.data[7], self.data[8]
         , self.data[9], self.data[10], self.data[11], self.data[12])
         #BBBBBBHHBBBBHBBBHBdB
@@ -1546,8 +1546,8 @@ class Parameter_Window:
                 print('f')
             Notifiy_Window.Notify_window(2, self.frame_root, self.master, self.df, 2, self.user)
 
-        #except:
-            #Notifiy_Window.Notify_window(9, 0,0,0,2,0)
+        except:
+            Notifiy_Window.Notify_window(9, 0,0,0,2,0)
 
     def showVOO(self):
         #show old parameters
@@ -1685,7 +1685,7 @@ class Parameter_Window:
                     pass
                 else:
                     self.entry_Upperlim.insert(0, str(int(self.df.at[j, 'DOO Upper Rate Limit'])))
-                if pd.isnull(self.df.at[j, 'DOO Ventricular Pulse Width']):
+                if pd.isnull(self.df.at[j, 'DOO Ventrical Pulse Width']):
                     pass
                 else:
                     self.entry_Pulse_Width.insert(0, str(int(self.df.at[j, 'DOO Ventricular Pulse Width'])))
@@ -1931,10 +1931,10 @@ class Parameter_Window:
                     pass
                 else:
                     self.entry_AV_Delay.insert(0, str(int(self.df.at[j, 'DOOR Fixed AV Delay'])))
-                if pd.isnull(self.df.at[j, 'DOOR Rate Smoothing']):
-                    pass
-                else:
-                    self.entry_Rate_Smooth.insert(0, str(int(self.df.at[j, 'DOOR Rate Smoothing'])))
+                #if pd.isnull(self.df.at[j, 'DOOR Rate Smoothing']):
+                 #   pass
+                #else:
+                 #   self.entry_Rate_Smooth.insert(0, str(int(self.df.at[j, 'DOOR Rate Smoothing'])))
                 if pd.isnull(self.df.at[j, 'DOOR Activity Threshold']):
                     pass
                 else:
