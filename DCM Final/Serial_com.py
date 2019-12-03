@@ -50,22 +50,29 @@ myports = 0
 refresh = 0.5 # Variable used to change the refresh speed of the serial status
 status = State(False)
 root = Tk()
+verification = 0
 
 def verify():
     verify = 0
+    print("im reading")
     # write code here to verify the correct board is connected
-    if verify == 0:
+    verify = s.read(1)
+    #print(verify)
+
+    if verify != 22:
+        print("not our board >:(")
         return 0
-    elif verify == 1:
+    elif verify == 22:
+        serial.write(22)
         return 1
 
 
 def check_serial():
-    global serial_init, serial_port, myports, status, s, refresh, root
+    global serial_init, serial_port, myports, status, s, refresh, root, verification
     try:
         s = Serial()
         s.port = 'COM6'
-        s.baudrate = 9600
+        s.baudrate = 115200
         s.timeout = 0.5
         s.dtr = 0
         s.open()
@@ -74,14 +81,15 @@ def check_serial():
         print(myports)
         serial_port = [port for port in myports if 'COM6' in port][0]
         status.state = True
-        verification = verify()
+        #verification = verify()
+        #print(verification)
     except:
         print("serial not open")
         serial_init = 0
         status.state = False
 
     while (1):
-        if (serial_init == 1 & verification ==1):
+        if (serial_init == 1):# & verification ==1):
             if status.state:
                 serialopen_image = tk.PhotoImage(file="serialopen.png")
                 label_serialopen = Label(root, image=serialopen_image)
@@ -96,6 +104,8 @@ def check_serial():
                 label_serialclosed.pack()
                 time.sleep(refresh)
                 label_serialclosed.pack_forget()
+                serial_init = 0
+                s.close()
 
 
 
@@ -119,7 +129,7 @@ def check_serial():
             try:
                 s = Serial()
                 s.port = 'COM6'
-                s.baudrate = 9600
+                s.baudrate = 115200
                 s.timeout = 0.5
                 s.dtr = 0
                 s.open()
@@ -128,7 +138,8 @@ def check_serial():
                 print(myports)
                 serial_port = [port for port in myports if 'COM6' in port][0]
                 status.state = True
-                verification = verify()
+                #verification = verify()
+                #print(verification)
             except:
                 print("serial not open")
                 serial_init = 0

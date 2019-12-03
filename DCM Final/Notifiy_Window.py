@@ -143,5 +143,5 @@ class Notify_window():  # Class to warn users of errors various errors or to not
         elif choice == 1:
             self.box.destroy()
             self.frame.pack_forget()
-            self.pacing_screen = Pacing_Screen.Pacing_Window(self.master, self.df, self.user)
+            self.pacing_screen = Pacing_Screen.Pacing_Window(self.master, self.user, self.df)
 

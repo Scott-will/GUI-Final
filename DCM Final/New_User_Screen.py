@@ -91,7 +91,7 @@ class New_User_Window:
         if pd.isnull(self.df['Username'].iloc[9]):  ##check if less than 10 users
             exists = False
             for i in range(0, 20, 2):
-                if self.df['Username'].iloc[i] == username:
+                if self.df.iat[i, 0] == username:
                     exists = True
             if exists == False:
                 if len(username) > 5:  # check if length is greater than 5
