@@ -71,7 +71,7 @@ def check_serial():
     global serial_init, serial_port, myports, status, s, refresh, root, verification
     try:
         s = Serial()
-        s.port = 'COM6'
+        s.port = 'COM4'
         s.baudrate = 115200
         s.timeout = 0.5
         s.dtr = 0
@@ -79,7 +79,7 @@ def check_serial():
         serial_init = 1
         myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
         print(myports)
-        serial_port = [port for port in myports if 'COM6' in port][0]
+        serial_port = [port for port in myports if 'COM4' in port][0]
         status.state = True
         #verification = verify()
         #print(verification)
@@ -128,7 +128,7 @@ def check_serial():
             label_serialclosed.pack_forget()
             try:
                 s = Serial()
-                s.port = 'COM6'
+                s.port = 'COM4'
                 s.baudrate = 115200
                 s.timeout = 0.5
                 s.dtr = 0

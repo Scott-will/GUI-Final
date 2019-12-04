@@ -23,6 +23,8 @@
 #################################
 
 import winsound
+
+import Lists
 import Login_Screen
 from tkinter import *
 import tkinter as tk
@@ -107,6 +109,18 @@ class Notify_window():  # Class to warn users of errors various errors or to not
             elif error == 8:
                 error7_label = Label(self.box, text="Invalid Parameter")
                 error7_label.place(x=80, y=20)
+                Ok_button.pack_forget()
+                Ok_button.pack_forget()
+
+                self.list = Lists.Parameter_List()
+
+                Ok_button = Button(self.box, text="        OK        ", command=lambda: self.action2(1))
+                Ok_button.place(x=80, y=50)
+
+                Ok_button = Button(self.box, text="      Cancel      ", command=lambda: self.action2(0))
+                Ok_button.place(x=160, y=50)
+
+
 
             elif error == 9:
                 error9_label = Label(self.box, text = "No board connected")
@@ -120,6 +134,14 @@ class Notify_window():  # Class to warn users of errors various errors or to not
             self.box.destroy()
         elif choice == 1:
             self.box.destroy()
+
+    def action2(self, choice):
+        if choice == 0:
+            self.box.destroy()
+            self.list.remove()
+        elif choice == 1:
+            self.box.destroy()
+            self.list.remove()
 
 
     def signout(self, choice, frame, master, df):

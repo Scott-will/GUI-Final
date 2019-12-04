@@ -17,3 +17,9 @@ class Parameter_List():
         self.label.pack()
         self.box.resizable(0, 0)
 
+    def remove(self):
+        self.box.destroy()
+
+
+
+

@@ -88,7 +88,7 @@ class New_User_Window:
         password_confirm = self.entry_password_confirmation.get()
         isnumber_username = False
         isnumber_password = False
-        if pd.isnull(self.df['Username'].iloc[9]):  ##check if less than 10 users
+        if pd.isnull(self.df.iat[18, 1]):  ##check if less than 10 users
             exists = False
             for i in range(0, 20, 2):
                 if self.df.iat[i, 0] == username:
@@ -126,4 +126,4 @@ class New_User_Window:
             else:
                 Notifiy_Window.Notify_window(1, 0, 0, 0, 2, 0)
         else:
-            Notifiy_Window.Notify_window(3, 0, 0, 0, 2, 0)
+            Notifiy_Window.Notify_window(7, 0, 0, 0, 2, 0)
